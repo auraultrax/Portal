@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6d35ff">
+  <meta name="description" content="Beray platformlarına tek merkezden hızlı ve güvenli erişim.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" href="./icons/beray-icon-512.png">
+  <link rel="apple-touch-icon" href="./icons/beray-icon-512.png">
+  <title>Beray • Tek Merkez</title>
+  <style>
+:root{
+  --bg:#f7f4ff;
+  --bg2:#ffffff;
+  --surface:rgba(255,255,255,.92);
+  --surface-2:#fbf9ff;
+  --text:#1f1830;
+  --muted:#756d85;
+  --primary:#6d35ff;
+  --primary2:#9f79ff;
+  --lav:#eee7ff;
+  --lav2:#f5f0ff;
+  --line:#e8e0f6;
+  --shadow:0 18px 55px rgba(83,53,157,.10);
+  --shadow2:0 28px 80px rgba(83,53,157,.16);
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 8% 0%,rgba(173,137,255,.20),transparent 25%),
+    radial-gradient(circle at 93% 12%,rgba(211,192,255,.24),transparent 23%),
+    linear-gradient(145deg,#fff 0%,#fbf9ff 46%,#f1ecff 100%);
+  overflow-x:hidden;
+}
+body:before,body:after{
+  content:"";position:fixed;z-index:-1;border-radius:999px;pointer-events:none;
+  filter:blur(4px);
+}
+body:before{width:290px;height:290px;left:-150px;top:42%;background:rgba(151,108,255,.10)}
+body:after{width:330px;height:330px;right:-180px;bottom:4%;background:rgba(198,168,255,.13)}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+
+.shell{width:min(1180px,100%);margin:auto;padding:16px 20px 44px}
+
+.nav{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:10px 0 18px;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.03em}
+.brand img{
+  width:50px;height:50px;border-radius:16px;box-shadow:0 10px 26px rgba(88,55,173,.16);
+}
+.brand span{font-size:20px}
+.brand em{font-style:normal;color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.mini-pill{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);color:#645d70;font-size:12px;font-weight:800;
+  box-shadow:0 8px 24px rgba(78,49,145,.06);
+}
+.dot{width:8px;height:8px;border-radius:50%;background:#7c51f4;box-shadow:0 0 12px rgba(124,81,244,.45)}
+.install-btn{
+  display:none;border:0;border-radius:14px;padding:11px 14px;color:#fff;font-size:13px;font-weight:900;
+  background:linear-gradient(135deg,#6d35ff,#9f79ff);box-shadow:0 11px 26px rgba(109,53,255,.18);cursor:pointer;
+}
+
+.hero{
+  padding:50px 0 26px;display:grid;grid-template-columns:1.18fr .82fr;gap:38px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border-radius:999px;
+  color:var(--primary);background:var(--lav2);border:1px solid #e2d7fb;
+  font-size:11px;font-weight:900;letter-spacing:.11em;
+}
+.eyebrow:before{content:"✦";font-size:12px}
+h1{
+  margin:16px 0 14px;font-size:clamp(44px,7vw,76px);line-height:.98;
+  letter-spacing:-.055em;max-width:760px;
+}
+h1 span{
+  background:linear-gradient(100deg,#5d27f5 0%,#8a54f6 48%,#b18afc 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-copy{max-width:680px;color:var(--muted);font-size:17px;line-height:1.72}
+
+.hero-card{
+  position:relative;overflow:hidden;padding:24px;border-radius:30px;
+  background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(247,243,255,.90));
+  border:1px solid #e6def8;box-shadow:var(--shadow);
+}
+.hero-card:after{
+  content:"";position:absolute;width:210px;height:210px;border-radius:50%;right:-65px;top:-60px;
+  background:radial-gradient(circle,rgba(128,76,255,.18),transparent 70%);
+}
+.hero-card-title{font-weight:900;font-size:17px;margin-bottom:12px}
+.hero-metric{display:flex;align-items:end;justify-content:space-between;gap:12px}
+.hero-metric strong{font-size:42px;letter-spacing:-.05em}
+.hero-metric span{color:var(--muted);font-size:13px;font-weight:700}
+.bars{display:flex;align-items:end;height:90px;gap:7px;margin-top:16px}
+.bars i{
+  display:block;flex:1;border-radius:12px 12px 5px 5px;
+  background:linear-gradient(180deg,#b89aff,#7042f4);opacity:.92;
+}
+.bars i:nth-child(1){height:32%}.bars i:nth-child(2){height:48%}.bars i:nth-child(3){height:40%}
+.bars i:nth-child(4){height:66%}.bars i:nth-child(5){height:54%}.bars i:nth-child(6){height:78%}.bars i:nth-child(7){height:92%}
+
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:30px 0 16px}
+.section-head h2{margin:0;font-size:28px;letter-spacing:-.035em}
+.section-head p{margin:0;color:var(--muted);font-size:13px}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+.card{
+  position:relative;overflow:hidden;min-height:360px;padding:22px;border-radius:var(--radius);
+  background:rgba(255,255,255,.90);border:1px solid rgba(226,220,240,.98);
+  box-shadow:var(--shadow);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.card:hover{
+  transform:translateY(-7px);box-shadow:var(--shadow2);border-color:#d9cbf5;
+}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.icon-wrap{
+  width:88px;height:88px;border-radius:24px;padding:3px;
+  background:linear-gradient(145deg,#fff,#f0eaff);
+  box-shadow:0 11px 27px rgba(76,44,144,.12);
+}
+.icon{width:100%;height:100%;object-fit:contain;border-radius:21px;display:block}
+.launch{
+  width:38px;height:38px;border-radius:13px;display:grid;place-items:center;
+  border:1px solid #e4daf7;background:#fbfaff;color:#6a37f7;font-weight:900;
+}
+.card h3{margin:21px 0 8px;font-size:23px;letter-spacing:-.035em}
+.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;min-height:68px}
+.features{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 20px}
+.tag{
+  font-size:11px;font-weight:800;color:#665e72;padding:7px 9px;border-radius:999px;
+  background:#f5f1ff;border:1px solid #e9e1f6;
+}
+.go{
+  display:flex;justify-content:space-between;align-items:center;width:100%;padding:13px 15px;border-radius:15px;
+  color:#fff;font-size:14px;font-weight:900;background:linear-gradient(135deg,#6931ff,#9b67ff);
+  box-shadow:0 12px 26px rgba(109,53,255,.18);
+}
+.card.education .go{background:linear-gradient(135deg,#496eea,#7560f2)}
+.card.health .go{background:linear-gradient(135deg,#7742ed,#ad72f6)}
+
+.bottom{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:18px}
+.info-card{
+  border-radius:24px;padding:20px 21px;background:rgba(255,255,255,.83);
+  border:1px solid var(--line);box-shadow:0 14px 40px rgba(68,42,130,.07)
+}
+.info-card strong{display:block;font-size:15px;margin-bottom:6px}
+.info-card span{color:var(--muted);font-size:13px;line-height:1.55}
+footer{
+  margin-top:28px;text-align:center;color:#81798f;font-size:12px;
+  padding-top:18px;border-top:1px solid rgba(227,220,241,.9)
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .bottom{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .shell{padding:12px 14px 30px}
+  .nav-actions .mini-pill{display:none}
+  .install-btn{display:inline-flex}
+  .hero{padding:34px 0 12px}
+  h1{font-size:46px}
+  .hero-copy{font-size:15px}
+  .card{min-height:340px}
+}
+</style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="nav">
+      <a class="brand" href="./" aria-label="Beray ana sayfa">
+        <img src="./icons/beray-icon-512.png" alt="Beray Tek Merkez">
+        <span>Beray <em>Tek Merkez</em></span>
+      </a>
+      <div class="nav-actions">
+        <span class="mini-pill"><span class="dot"></span> Tüm platformlar hazır</span>
+        <button class="install-btn" id="installBtn" type="button">📲 Yükle</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">BERAY DİJİTAL EKOSİSTEM</div>
+        <h1>Beray dünyasına <span>tek dokunuşla.</span></h1>
+        <p class="hero-copy">Sosyal, eğitim ve sağlık platformlarını tek merkezde bul. İstediğin platformu seç, gecikmeden doğrudan kendi adresine geç.</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-title">Tek merkez • temiz deneyim</div>
+        <div class="hero-metric"><strong>3</strong><span>aktif Beray platformu</span></div>
+        <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <div>
+        <h2>Platformlar</h2>
+        <p>İkonuna dokun, platformuna geç.</p>
+      </div>
+    </div>
+
+    <section class="grid" aria-label="Beray platformları">
+      <a class="card" href="https://aura-ultra-x.xauraultra.workers.dev/">
+        <div class="card-top">
+          <div class="icon-wrap"><img class="icon" src="./icons/aurax-icon-512.png" alt="Beray Aura X"></div>
+          <div class="launch" aria-hidden="true">↗</div>
+        </div>
+        <h3>Beray Aura X</h3>
+        <p>Beray'ın sosyal deneyimine doğrudan geç. Keşfet, paylaş ve platformdaki akışa katıl.</p>
+        <div class="features"><span class="tag">Sosyal</span><span class="tag">Keşfet</span><span class="tag">Paylaş</span></div>
+        <div class="go"><span>Aura X'e Git</span><span>→</span></div>
+      </a>
+
+      <a class="card education" href="https://auraultrax.github.io/Beray-Platform/">
+        <div class="card-top">
+          <div class="icon-wrap"><img class="icon" src="./icons/beray-icon-512.png" alt="Beray Eğitim Platformu"></div>
+          <div class="launch" aria-hidden="true">↗</div>
+        </div>
+        <h3>Beray Eğitim Platformu</h3>
+        <p>Derslere, testlere ve öğrenme alanlarına tek dokunuşla geçerek eğitim deneyimini başlat.</p>
+        <div class="features"><span class="tag">Dersler</span><span class="tag">Testler</span><span class="tag">Öğren</span></div>
+        <div class="go"><span>Eğitim'e Git</span><span>→</span></div>
+      </a>
+
+      <a class="card health" href="https://auraultrax.github.io/Beray-Saglik/">
+        <div class="card-top">
+          <div class="icon-wrap"><img class="icon" src="./icons/saglik-icon-512.png" alt="Beray Sağlık"></div>
+          <div class="launch" aria-hidden="true">↗</div>
+        </div>
+        <h3>Beray Sağlık</h3>
+        <p>Sağlık deneyimine geç; takip, kişisel kayıtlar ve sağlık odaklı araçlara tek merkezden ulaş.</p>
+        <div class="features"><span class="tag">Sağlık</span><span class="tag">Takip</span><span class="tag">Güven</span></div>
+        <div class="go"><span>Beray Sağlık'a Git</span><span>→</span></div>
+      </a>
+    </section>
+
+    <section class="bottom">
+      <div class="info-card"><strong>📱 Uygulama gibi kullan</strong><span>Telefonunda veya bilgisayarında Beray'ı ana ekrana ekleyebilir, tek dokunuşla bu merkeze ulaşabilirsin.</span></div>
+      <div class="info-card"><strong>⚡ Hızlı geçiş</strong><span>Platform adresleri doğrudan bağlantıdır; kartı seçtiğinde ilgili site açılır.</span></div>
+    </section>
+
+    <footer>Beray • Eğitim • Sağlık • Sosyal &nbsp;•&nbsp; From Beray 💜</footer>
+  </div>
+
+  <script>
+    let deferredPrompt = null;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      deferredPrompt = event;
+      installBtn.style.display = 'inline-flex';
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) {
+        alert('Tarayıcının menüsünden “Ana ekrana ekle” veya “Uygulamayı yükle” seçeneğini kullanabilirsin.');
+        return;
+      }
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    });
+
+    window.addEventListener('appinstalled', () => {
+      installBtn.style.display = 'none';
+    });
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
